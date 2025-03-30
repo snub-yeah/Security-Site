@@ -1,8 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Outfit:wght@100..900&display=swap');
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #1e1e2e; 
+  --foreground: #181825; 
+  --text: #cdd6f4;      
+  --accent: #f5c2e7;    
+  --border: #313244;     
 }
 
 @theme inline {
@@ -12,15 +16,69 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  font-family: 'Noto Sans', sans-serif;
+  font-weight: 400;
 }
 
-body {
-  background: var(--background);
+/* the outer, full-screen container */
+.viewport-container {
+  @apply fixed top-0 left-0 w-screen h-screen overflow-x-hidden;
+  background-color: var(--background);
+}
+
+/* the main window container */
+.window-container {
+  @apply w-full h-full flex flex-col rounded-lg overflow-hidden;
+  background-color: var(--foreground);
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+}
+
+.topBar {
+  background: var(--foreground);
+  color: var(--text);
+  padding: 1.3rem;
+  padding-bottom: 1.6rem;
+  padding-top: 2rem;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  border-bottom: 2px solid var(--border);
+  color: var(--accent);
+}
+
+.window {
+  @apply flex-1 p-4;
+  background: linear-gradient(
+    135deg,
+    rgba(245, 194, 231, 0.1) 0%,    
+    var(--background) 25%,           
+    rgba(30, 30, 46, 0.95) 100%    
+  );
+  color: var(--text);
+}
+
+.text-content {
+  @apply flex-1 p-4;
+  padding: 2rem;
+  text-align: center;
+  font-size: 1.5rem;
+}
+
+.backButton {
+  @apply px-3 py-1 rounded-md transition-colors text-sm font-medium;
+  background-color: var(--accent);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  opacity: 0.9;  /* Making the pink slightly softer */
+}
+
+.backButton:hover {
+  opacity: 1;
+}
+
+.text-content-header h1{
+  padding: 3rem;
+  font-size: 9rem;
+  font-weight: 700;
+  color: var(--accent);
 }
