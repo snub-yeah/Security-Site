@@ -2,6 +2,8 @@
 
 import anime from 'animejs'
 import { useEffect } from 'react'
+import { useRouter } from 'next/navigation'
+import TopBar from '@/components/TopBar'
 
 export default function Home() {
 
@@ -34,14 +36,14 @@ export default function Home() {
     })
   }, [])
 
+  const router = useRouter()
+
+
 
   return (
     <div className="viewport-container">
       <div className="window-container">
-        <div className="topBar">
-          <button className="backButton">&lt;-</button>
-          <p>main.page</p>
-        </div>
+        <TopBar />
         <main className="window">
           <div className="text-content">
             <div className="text-content-header">
