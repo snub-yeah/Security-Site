@@ -1,0 +1,39 @@
+.card {
+  background: var(--foreground);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  border-color: var(--accent);
+}
+
+.title {
+  color: var(--accent);
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.preview {
+  color: var(--text);
+  font-size: 1rem;
+  margin: 0;
+  opacity: 0.8;
+  line-height: 1.5;
+}
+
+.loading {
+  color: var(--text);
+  opacity: 0.6;
+  font-style: italic;
+} 
