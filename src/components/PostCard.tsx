@@ -44,17 +44,21 @@ export default function PostCard({ post, searchQuery }: PostCardProps) {
     fetchPreview()
   }, [post.path])
 
-  const handleClick = () => {
-    router.push(`/post/${post.id}`)
-  }
-
-  // check if the search query is contained in the title or text preview
   const checkSearchQuery = (query: string) => {
     return post.title.toLowerCase().includes(query.toLowerCase()) || preview.toLowerCase().includes(query.toLowerCase())
   }
 
-  return checkSearchQuery(searchQuery) ? (
-    <div className={styles.card} onClick={handleClick}>
+  const handleClick = () => {
+    router.push(`/post/${post.id}`)
+  }
+
+  return (
+    <div 
+      className={styles.card} 
+      onClick={handleClick}
+      data-visible={checkSearchQuery(searchQuery)}
+      style={{ display: checkSearchQuery(searchQuery) ? 'block' : 'none' }}
+    >
       <h2 className={styles.title}>{post.title}</h2>
       {isLoading ? (
         <div className={styles.loading}>Loading...</div>
@@ -62,5 +66,5 @@ export default function PostCard({ post, searchQuery }: PostCardProps) {
         <p className={styles.preview}>{preview}</p>
       )}
     </div>
-  ) : null // if the search query is not contained in the title or text preview, don't render the card
+  )
 } 

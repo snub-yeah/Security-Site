@@ -2,7 +2,8 @@
 
 import TopBar from '@/components/TopBar'
 import PostCard from '@/components/PostCard'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
+import anime from 'animejs'
 
 interface Post {
   id: number
@@ -13,11 +14,34 @@ interface Post {
 export default function Home() {
   const [posts, setPosts] = useState<Post[]>([])
   const [searchQuery, setSearchQuery] = useState<string>('')
+  const [isReadyToShowPosts, setIsReadyToShowPosts] = useState(false)
+  const postsContainerRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     fetch('/api/get-posts')
       .then(res => res.json())
-      .then(data => setPosts(data.posts));
+      .then(data => {
+        setPosts(data.posts)
+        
+        // wait to make sure frame is ready and rendered
+        requestAnimationFrame(() => {
+          if (postsContainerRef.current) {
+            const postElements = Array.from(postsContainerRef.current.children) as HTMLElement[]
+            
+            
+            // animate each of the posts
+            anime({
+              targets: postElements,
+              opacity: [0, 1],
+              translateY: [20, 0],
+              duration: 500,
+              easing: 'easeOutQuad',
+              delay: anime.stagger(100)
+            })
+          }
+          setIsReadyToShowPosts(true)
+        })
+      });
   }, [])
 
   return (
@@ -36,9 +60,11 @@ export default function Home() {
                 className="w-1/2 p-2 rounded-md bg-foreground border border-border text-text focus:outline-none focus:border-accent"
               />
             </div>
-            {posts.map((post) => (
-              <PostCard key={post.id} post={post} searchQuery={searchQuery} />
-            ))}
+            <div ref={postsContainerRef} style={{ visibility: isReadyToShowPosts ? 'visible' : 'hidden' }}>
+              {posts.map((post) => (
+                <PostCard key={post.id} post={post} searchQuery={searchQuery} />
+              ))}
+            </div>
           </div>
         </main>
       </div>
