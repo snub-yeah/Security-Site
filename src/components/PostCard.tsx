@@ -52,12 +52,14 @@ export default function PostCard({ post, searchQuery }: PostCardProps) {
     router.push(`/post/${post.id}`)
   }
 
+  if (!checkSearchQuery(searchQuery)) {
+    return null;
+  }
+
   return (
     <div 
-      className={styles.card} 
+      className={styles.card}
       onClick={handleClick}
-      data-visible={checkSearchQuery(searchQuery)}
-      style={{ display: checkSearchQuery(searchQuery) ? 'block' : 'none' }}
     >
       <h2 className={styles.title}>{post.title}</h2>
       {isLoading ? (

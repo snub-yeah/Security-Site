@@ -1,7 +1,7 @@
 'use client'
 
-import { useRouter } from 'next/navigation'
 import { useScrollDirection } from '@/hooks/useScrollDirection'
+import Link from 'next/link'
 
 interface TopBarProps {
   currentPage: string
@@ -9,18 +9,21 @@ interface TopBarProps {
 }
 
 export default function TopBar({ currentPage, backButtonPage }: TopBarProps) {
-  const router = useRouter()
   const isVisible = useScrollDirection()
 
   return (
     <div className={`topBar ${isVisible ? 'visible' : 'hidden'}`}>
-      <button className="backButton" onClick={() => router.push(backButtonPage)}>
-        &lt;-
-      </button>
+      <div className="topBar-left">
+      <Link href={backButtonPage} className="backButton">
+      ←
+      </Link>
       <p>{currentPage}.page</p>
-      <button className="backButton" onClick={() => router.push('/posts')}>
-        posts
-      </button>
+      </div>
+      <div className="hyperlinks">
+      <Link href="/">Home</Link>
+      <Link href="/posts">Posts</Link>
+      <Link href="/about">About</Link>
+      </div>
     </div>
   )
 } 

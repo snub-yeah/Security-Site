@@ -6,7 +6,8 @@
   --foreground: #181825; 
   --text: #cdd6f4;      
   --accent: #f5c2e7;    
-  --border: #313244;     
+  --border: #313244;    
+  --background-hover: #372e46;
 }
 
 @theme inline {
@@ -45,11 +46,11 @@ body {
 .topBar {
   background: var(--foreground);
   color: var(--text);
-  padding: 1.3rem;
+  padding: 2rem;
   padding-bottom: 1.6rem;
   padding-top: 2rem;
   display: flex;
-  gap: 1rem;
+  justify-content: space-between;
   align-items: center;
   border-bottom: 2px solid var(--border);
   color: var(--accent);
@@ -70,6 +71,33 @@ body {
 .topBar.visible {
   transform: translateY(0);
   opacity: 1;
+}
+
+.topBar-left {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-left: 1rem;
+}
+
+.hyperlinks {
+  display: flex;
+  gap: 2.6rem;
+  align-items: center;
+  margin-right: 2.5rem;
+}
+
+.hyperlinks a {
+  color: var(--text);
+  text-decoration: none;
+  transition: color 0.2s ease;
+  font-size: 1.4rem;
+  font-weight: 500;
+}
+
+.hyperlinks a:hover {
+  color: var(--accent);
+  text-shadow: 0 0 10px var(--accent);
 }
 
 .window {

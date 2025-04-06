@@ -1,12 +1,18 @@
 'use client'
 
 import anime from 'animejs'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import TopBar from '@/components/TopBar'
 
 export default function Home() {
+  const [isReadyToShowContent, setIsReadyToShowContent] = useState(false)
+  
   useEffect(() => {
+    requestAnimationFrame(() => {
+      setIsReadyToShowContent(true)
+    })
+
     // header
     anime({
       targets: '.text-content-header h1',
@@ -72,13 +78,13 @@ export default function Home() {
       <div className="window-container">
         <TopBar currentPage="main" backButtonPage="/" />
         <main className="window">
-          <div className="text-content">
+          <div className="text-content" style={{ visibility: isReadyToShowContent ? 'visible' : 'hidden' }}>
             <div className="text-content-header">
               <h1>snub-yeah</h1>
             </div>
             <p>This is a site for my security writeups.</p>
           </div>
-          <div className="advertisement">
+          <div className="advertisement" style={{ visibility: isReadyToShowContent ? 'visible' : 'hidden' }}>
             <p>Click below to see posts</p>
             <div className="arrow-container">
               <div className="arrow">▼</div>
