@@ -47,7 +47,7 @@ export default function Home() {
   return (
     <div className="viewport-container">
       <div className="window-container">
-        <TopBar currentPage="posts" />
+        <TopBar currentPage="posts" backButtonPage="/" />
         <main className="window">
           <div className="text-content">
             <div className="flex flex-col items-center gap-4 mb-8">
