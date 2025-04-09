@@ -4,6 +4,7 @@ import anime from 'animejs'
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import TopBar from '@/components/TopBar'
+import Image from 'next/image'
 
 export default function Home() {
   const [isReadyToShowContent, setIsReadyToShowContent] = useState(false)
@@ -101,11 +102,16 @@ export default function Home() {
         <main className="window">
           <div className="text-content" style={{ visibility: isReadyToShowContent ? 'visible' : 'hidden' }}>
             <div className="text-content-header">
-              <img src="images/type.png" alt='cat typing gif' 
+              {/* this is the cat typing gif, had to replace it with Image cuz i had an issue with the normal img tag */}
+              <Image 
+                src="/images/type.png" 
+                alt='cat typing gif'
+                width={500}
+                height={500}
                 onMouseOver={onHoverOverCat} 
                 onMouseLeave={onHoverLeaveCat}
                 onMouseMove={onMouseMove}
-              ></img>
+              />
               <h1>snub-yeah</h1>
             </div>
             <span

@@ -3,6 +3,9 @@
 import { useParams, useRouter } from 'next/navigation'
 import TopBar from '@/components/TopBar'
 import { useEffect, useState } from 'react'
+// the posts are stored as markdown, so this is using react markdown to transform it.
+import Markdown from 'react-markdown'
+import styles from './Post.module.css'
 
 export default function Post() {
   const { id } = useParams()
@@ -16,7 +19,9 @@ export default function Post() {
             router.push('/')
         } else {
             res.json().then((data) => {
-                setPost(data)
+                //get the markdown stuff from the JSON object
+                const mdData = data.markdown;
+                setPost(mdData)
             })
         }
     })
@@ -27,7 +32,10 @@ export default function Post() {
       <div className="window-container">
         <TopBar currentPage="post" backButtonPage="/posts" />
         <main className="window">
-          <h1>Post {parseInt(id as string)}</h1>
+          <div className={styles.postContainer}>
+            <h1>Post {parseInt(id as string)}</h1>
+            <Markdown>{post}</Markdown>
+          </div>
         </main>
       </div>
     </div>

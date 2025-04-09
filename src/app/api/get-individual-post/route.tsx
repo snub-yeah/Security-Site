@@ -29,8 +29,14 @@ export async function GET(request: NextRequest) {
   // fetch the markdown file for the post
   const markdown = await fetch(`https://snub-yeah.github.io/Security-Writeups/${post.path}`).then((res) => res.text());
 
-  // return the markdown file
-  return NextResponse.json({ markdown })
+  // replace relative image paths with full GitHub URLs. shoutout Claude for this one
+  const transformedMarkdown = markdown.replace(
+    /!\[([^\]]*)\]\(\.\/([^)]+)\)/g,
+    `![$1](https://snub-yeah.github.io/Security-Writeups/${post.path.split('/').slice(0, -1).join('/')}/$2)`
+  );
+
+  // return the transformed markdown
+  return NextResponse.json({ markdown: transformedMarkdown })
     } catch (error) {
         return NextResponse.json({ error: "Internal server error" }, { status: 500 });
     }

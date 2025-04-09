@@ -1,0 +1,120 @@
+/* most of this styling was made by Claude, I'm lazy and all it does is transfer the styling to the markdown */
+.postContainer {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 2.5rem;
+  color: var(--text);
+  background: rgba(245, 194, 231, 0.03);
+  border-radius: 12px;
+  backdrop-filter: blur(8px);
+}
+
+/* just for the main "Post" header*/
+.postContainer > h1:first-child {
+  color: var(--accent);
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 2.5rem;
+  text-shadow: 0 0 20px rgba(245, 194, 231, 0.3);
+}
+
+.postContainer h1:not(:first-child) {
+  color: var(--accent);
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin: 2rem 0 1rem;
+  opacity: 0.9;
+}
+
+.postContainer h2 {
+  color: var(--accent);
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 1.8rem 0 1rem;
+  opacity: 0.85;
+}
+
+.postContainer h3 {
+  color: var(--accent);
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin: 1.5rem 0 1rem;
+  opacity: 0.8;
+}
+
+.postContainer p {
+  line-height: 1.8;
+  margin: 1.2rem 0;
+  font-size: 1.2rem;
+  opacity: 0.95;
+  letter-spacing: 0.2px;
+}
+
+.postContainer pre {
+  background-color: rgba(30, 30, 46, 0.7);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1.2rem;
+  margin: 1.8rem 0;
+  overflow-x: auto;
+  backdrop-filter: blur(4px);
+}
+
+.postContainer code {
+  font-family: 'Courier New', monospace;
+  font-size: 0.9rem;
+}
+
+.postContainer p code {
+  background-color: var(--background);
+  padding: 0.2rem 0.4rem;
+  border-radius: 4px;
+  color: var(--accent);
+}
+
+.postContainer ul, 
+.postContainer ol {
+  margin: 1rem 0;
+  padding-left: 2rem;
+}
+
+.postContainer li {
+  margin: 0.5rem 0;
+  line-height: 1.6;
+}
+
+.postContainer blockquote {
+  border-left: 4px solid var(--accent);
+  margin: 1.8rem 0;
+  padding: 1rem 0 1rem 1.8rem;
+  background-color: rgba(30, 30, 46, 0.4);
+  opacity: 0.9;
+  border-radius: 0 8px 8px 0;
+}
+
+.postContainer a {
+  color: var(--accent);
+  text-decoration: none;
+  transition: all 0.2s ease;
+  padding: 0.1rem 0.3rem;
+  margin: 0 -0.3rem;
+  border-radius: 4px;
+}
+
+.postContainer a:hover {
+  background-color: rgba(245, 194, 231, 0.1);
+  text-decoration: none;
+}
+
+.postContainer img {
+  max-width: 100%;
+  border-radius: 8px;
+  margin: 1.5rem 0;
+}
+
+.postContainer hr {
+  border: none;
+  border-top: 2px solid var(--border);
+  margin: 2rem 0;
+}
+
