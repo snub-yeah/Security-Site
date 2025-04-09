@@ -130,9 +130,22 @@ body {
   opacity: 1;
 }
 
-.text-content-header h1 {
+.text-content-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
   padding: 3rem;
   font-size: 9rem;
+}
+
+.text-content-header img {
+  min-width: 15vw;
+  max-width: 22vw;
+  height: auto;
+}
+
+.text-content-header h1 {
   font-weight: 700;
   color: var(--accent);
 }
@@ -178,6 +191,26 @@ body {
   font-size: 1.5rem;
   opacity: 0;
   transform: translateY(-10px);
+}
+
+.cursor-tooltip {
+  display: none;
+  position: fixed;
+  background-color: var(--foreground);
+  color: var(--text);
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: 2px solid var(--accent);
+  font-size: 1rem;
+  z-index: 1000;
+  pointer-events: none;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+  transform: translateY(-50%);
+  transition: opacity 0.2s ease;
+}
+
+.cursor-tooltip.visible {
+  display: block;
 }
 
 

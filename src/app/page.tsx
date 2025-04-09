@@ -7,6 +7,8 @@ import TopBar from '@/components/TopBar'
 
 export default function Home() {
   const [isReadyToShowContent, setIsReadyToShowContent] = useState(false)
+  const [isTooltipVisible, setIsTooltipVisible] = useState(false)
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 })
   
   useEffect(() => {
     requestAnimationFrame(() => {
@@ -15,7 +17,7 @@ export default function Home() {
 
     // header
     anime({
-      targets: '.text-content-header h1',
+      targets: '.text-content-header',
       opacity: [0, 1],
       duration: 1000,
       easing: 'easeOutCubic',
@@ -23,7 +25,7 @@ export default function Home() {
     })
 
     anime({
-      targets: '.text-content-header h1',
+      targets: '.text-content-header',
       scale: [0.95, 1.05, 1],
       duration: 500,
       easing: 'easeOutCubic',
@@ -73,6 +75,25 @@ export default function Home() {
 
   const router = useRouter()
 
+  const onHoverOverCat = (e: React.MouseEvent) => {
+    setIsTooltipVisible(true)
+    setMousePos({ x: e.clientX, y: e.clientY })
+  }
+
+  const onHoverLeaveCat = () => {
+    setIsTooltipVisible(false)
+  }
+
+  /**
+   * Method to calculate the position of the cursor when hovering over the cat image
+   * @param event <-- React mouse event, which has a clientX and a clientY.
+   */
+  const onMouseMove = (event: React.MouseEvent) => {
+    if (isTooltipVisible) {
+      setMousePos({ x: event.clientX, y: event.clientY })
+    }
+  }
+
   return (
     <div className="viewport-container">
       <div className="window-container">
@@ -80,8 +101,22 @@ export default function Home() {
         <main className="window">
           <div className="text-content" style={{ visibility: isReadyToShowContent ? 'visible' : 'hidden' }}>
             <div className="text-content-header">
+              <img src="images/type.png" alt='cat typing gif' 
+                onMouseOver={onHoverOverCat} 
+                onMouseLeave={onHoverLeaveCat}
+                onMouseMove={onMouseMove}
+              ></img>
               <h1>snub-yeah</h1>
             </div>
+            <span
+              className={`cursor-tooltip ${isTooltipVisible ? 'visible' : ''}`}
+              style={{
+                left: `${mousePos.x + 15}px`,
+                top: `${mousePos.y + 15}px`,
+              }}
+            >
+              ← this is me
+            </span>
             <p>This is a site for my security writeups.</p>
           </div>
           <div className="advertisement" style={{ visibility: isReadyToShowContent ? 'visible' : 'hidden' }}>

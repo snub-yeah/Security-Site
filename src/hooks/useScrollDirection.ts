@@ -11,8 +11,9 @@ export function useScrollDirection() {
     const controlNavbar = () => {
       const currentScrollY = window.scrollY
 
-      // show navbar when scrolling up, hide when scrolling down
-      if (currentScrollY < lastScrollY) {
+      // only hide navbar if we've scrolled at least 50 px. this was a workaround for an error when going to new pages, since
+      // the navbar would instantly disappear.
+      if (currentScrollY < lastScrollY || currentScrollY < 50) {
         setIsVisible(true)
       } else {
         setIsVisible(false)
