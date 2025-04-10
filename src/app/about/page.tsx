@@ -22,7 +22,7 @@ export default function Home() {
               />
               <h1>About me</h1>
             </div>
-            <p>Hi! I'm <em style={{color: 'var(--accent)'}}>snub-yeah</em>, a security researcher and developer.</p>
+            <p>Hi! I&apos;m <em style={{color: 'var(--accent)'}}>snub-yeah</em>, a security researcher and developer.</p>
             <p>This is a site I made to share random cybersecurity related posts or hacking writeups.</p>
             <p>This site is built with Next.js, Tailwind CSS, and Anime.js for animations. 
                 You can <a target="_blank" style={{color: 'var(--accent)', fontWeight: 'bold'}} href="https://github.com/snub-yeah/Security-Site"> visit the repository for this site here</a>.</p>

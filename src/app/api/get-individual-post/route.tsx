@@ -37,7 +37,10 @@ export async function GET(request: NextRequest) {
 
   // return the transformed markdown
   return NextResponse.json({ markdown: transformedMarkdown })
-    } catch (error) {
-        return NextResponse.json({ error: "Internal server error" }, { status: 500 });
+    } catch {
+        return new Response(JSON.stringify({ error: 'Failed to fetch post' }), {
+            status: 500,
+            headers: { 'Content-Type': 'application/json' },
+        })
     }
 }

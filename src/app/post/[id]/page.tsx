@@ -25,7 +25,7 @@ export default function Post() {
             })
         }
     })
-  }, [id])
+  }, [id, router])
 
   return (
     <div className="viewport-container">
