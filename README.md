@@ -1,4 +1,5 @@
 # Snub-yeah Security Site
+## [Live Deployed Site](https://snub.lol/)
 This is a personal site where I have my cybersecurity writeups and posts. It also features a cat.
 
 ## Features
@@ -32,6 +33,8 @@ npm run dev
 - Real domain name
 - Sorting post options
 - Implementation of JSDeliver to speedup load times
+- Mobile Layout
+- Add actual favicon.ico
 
 #### Technologies
 - Next with TypeScript
