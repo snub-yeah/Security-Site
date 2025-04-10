@@ -108,6 +108,7 @@ export default function Home() {
                 alt='cat typing gif'
                 width={500}
                 height={500}
+                className="cat-image"
                 onMouseOver={onHoverOverCat} 
                 onMouseLeave={onHoverLeaveCat}
                 onMouseMove={onMouseMove}

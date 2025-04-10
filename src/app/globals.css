@@ -213,4 +213,11 @@ body {
   display: block;
 }
 
+.cat-image {
+  min-width: 300px !important;
+  max-width: 500px !important; 
+  width: 25vw !important;      
+  height: auto !important;     
+}
+
 
