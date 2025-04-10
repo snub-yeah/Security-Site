@@ -1,5 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server'
 
+// need this because eslint is an opp
+interface Post {
+  id: number;
+  path: string;
+  title: string;
+}
+
 export async function GET(request: NextRequest) {
     try {
   const { searchParams } = new URL(request.url)
@@ -19,7 +26,7 @@ export async function GET(request: NextRequest) {
   }
 
   // find the post with the given id
-  const post = posts.posts.find((post: any) => post.id == id);
+  const post = posts.posts.find((post: Post) => post.id == id);
 
   // if the post is not found, return a 404 error
   if (!post) {
