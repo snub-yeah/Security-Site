@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
+// in new updated version, this is using jsdelivr instead of github pages. we'll see if this is faster
 
 // need this because eslint is an opp
 interface Post {
@@ -18,7 +19,7 @@ export async function GET(request: NextRequest) {
   const id = parseInt(stringId)
 
   // fetch the posts from the json file
-  const posts = await fetch("https://snub-yeah.github.io/Security-Writeups/posts.json").then((res) => res.json());
+  const posts = await fetch("https://cdn.jsdelivr.net/gh/snub-yeah/Security-Writeups/posts.json").then((res) => res.json());
 
   // check if the posts are an array. if you're wondering why it is 'posts.posts', it's because there's a nested 'posts' object in the json file
   if (!Array.isArray(posts.posts)) {
@@ -34,16 +35,16 @@ export async function GET(request: NextRequest) {
   }
 
   // fetch the markdown file for the post
-  const markdown = await fetch(`https://snub-yeah.github.io/Security-Writeups/${post.path}`).then((res) => res.text());
+  const markdown = await fetch(`https://cdn.jsdelivr.net/gh/snub-yeah/Security-Writeups/${post.path}`).then((res) => res.text());
 
   // replace relative image paths with full GitHub URLs. shoutout Claude for this one
   const transformedMarkdown = markdown.replace(
     /!\[([^\]]*)\]\(\.\/([^)]+)\)/g,
-    `![$1](https://snub-yeah.github.io/Security-Writeups/${post.path.split('/').slice(0, -1).join('/')}/$2)`
+    `![$1](https://cdn.jsdelivr.net/gh/snub-yeah/Security-Writeups/${post.path.split('/').slice(0, -1).join('/')}/$2)`
   );
 
   // return the transformed markdown
-  return NextResponse.json({ markdown: transformedMarkdown })
+  return NextResponse.json({ markdown: transformedMarkdown, title: post.title })
     } catch {
         return new Response(JSON.stringify({ error: 'Failed to fetch post' }), {
             status: 500,

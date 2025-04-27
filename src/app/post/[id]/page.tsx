@@ -10,7 +10,7 @@ import styles from './Post.module.css'
 export default function Post() {
   const { id } = useParams()
   const [post, setPost] = useState(null)
-
+  const [title, setTitle] = useState(null)
   const router = useRouter()
 
   useEffect(() => {
@@ -22,6 +22,7 @@ export default function Post() {
                 //get the markdown stuff from the JSON object
                 const mdData = data.markdown;
                 setPost(mdData)
+                setTitle(data.title || "Post")
             })
         }
     })
@@ -33,7 +34,8 @@ export default function Post() {
         <TopBar currentPage="post" backButtonPage="/posts" />
         <main className="window">
           <div className={styles.postContainer}>
-            <h1>Post {parseInt(id as string)}</h1>
+            {/* for some reason, this used to show "Post <id>". idk what i was thinking, that is worse than just showing the title */}
+            <h1>{title}</h1>
             <Markdown>{post}</Markdown>
           </div>
         </main>
