@@ -37,8 +37,8 @@ npm run dev
 - More cats
 - Real posts
 - Better about page and navigation (more contact methods)
-- Sorting post options
-- Implementation of JSDeliver to speedup load times
+- ~~Sorting post options~~ (kinda)
+- ~~Implementation of JSDeliver to speedup load times~~
 - Mobile Layout
 
 #### Technologies
