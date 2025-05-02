@@ -45,7 +45,7 @@ export default function Home() {
   }, [])
 
   const sortPosts = (posts: Post[]) => {
-    let sortedPosts = [...posts];
+    const sortedPosts = [...posts];
     
     if (sortMethod === 'title') {
       //claude sorting method
