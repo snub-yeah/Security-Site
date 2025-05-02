@@ -9,8 +9,8 @@ import styles from './Post.module.css'
 
 export default function Post() {
   const { id } = useParams()
-  const [post, setPost] = useState(null)
-  const [title, setTitle] = useState(null)
+  const [post, setPost] = useState("")
+  const [title, setTitle] = useState("Loading...")
   const router = useRouter()
 
   useEffect(() => {

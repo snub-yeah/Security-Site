@@ -8,7 +8,7 @@ export default function Home() {
   return (
     <div className="viewport-container">
       <div className="window-container">
-        <TopBar currentPage="main" backButtonPage="/" />
+        <TopBar currentPage="about" backButtonPage="/" />
         <main className="window">
           <div className="text-content" >
             <div className="text-content-header">
